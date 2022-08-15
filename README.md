@@ -1,15 +1,44 @@
 # Subscribers Web Application
-[Reference](https://nuxtjs.org/docs/get-started/installation)<br>
+[Reference:NuxtJs get start](https://nuxtjs.org/docs/get-started/installation)<br>
 ```
-yarn create nuxt-app subscribers
+yarn create nuxt-app subscribers-app
+cd subscribers-app
+npm run build
+npm run start
 ```
+Manual installation
+```
+mkdir subscribers-app
+```
+```
+cd subscribers-app
+```
+Create the package.json file
+```
+touch package.json
+```
+Copy this configuration into package.json
+```
+{
+  "name": "subscribers-app",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "start": "nuxt start"
+  }
+}
+```
+Install Nuxt 
 ```
 npm install nuxt
 ```
+``` 
+mkdir pages
+touch pages/index.vue
 ```
-yarn add nuxt  
+To run Application
 ```
-```
-cd subscribers  
+npm run dev
 ```
 
