@@ -3,3 +3,13 @@
 ```
 yarn create nuxt-app subscribers
 ```
+```
+npm install nuxt
+```
+```
+yarn add nuxt  
+```
+```
+cd subscribers  
+```
+
