@@ -17,5 +17,15 @@
 	}
 	</style>
 <template>
-  <h1>Hello From Next Page</h1>
+  
+ 
+</template>
+ <template>
+  <main>
+   <h1>Hello From Next Page</h1>
+    <NuxtLink to="/">
+      Home
+	</NuxtLink>
+    <a href="http://localhost:3000"></a>
+  </main>
 </template>
