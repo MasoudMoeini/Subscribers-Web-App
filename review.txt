@@ -1,0 +1,24 @@
+<div class="form">
+   <form name="Form1"  @submit.prevent="postNow" method="post">
+   <label for="name">Name</label>
+   <input type="text" id="name" name="name"><br>
+   <label for="<subscribedToChannel">Role</label>
+   <input type="text" id="subscribedToChannel" name="subscribedToChannel"><br>
+   <label for="_id">Id</label>
+   <input id="id" name="id"><br>
+   <input type="submit" form="Form1" name="submit"  value="Submit" class="button"/>
+   <input type="submit" form="Form1" name="delete" value="Delete" class="button"/>
+   </form>
+    </div>
+postNow() {
+  axios.post('http://0.0.0.0:3000/subscribers', {
+     headers: {
+      'Content-Type': 'application/json',
+    },
+    body:JSON.stringify({
+          name: this.name,
+          subscribedToChannel: this.subscribedToChannel,
+        
+        })
+   })
+  },

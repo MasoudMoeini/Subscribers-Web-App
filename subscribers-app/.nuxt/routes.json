@@ -6,6 +6,12 @@
     "chunkName": "pages/fun"
   },
   {
+    "name": "test",
+    "path": "/test",
+    "component": "/Users/masoudmoeini/Desktop/Subscribers-Web-App/subscribers-app/pages/test.vue",
+    "chunkName": "pages/test"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/Users/masoudmoeini/Desktop/Subscribers-Web-App/subscribers-app/pages/index.vue",
