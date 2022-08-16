@@ -1,18 +1,16 @@
 <style>
 	body {
-	  background-color: rgb(7, 172, 198);
+	  background-color: rgb(13, 162, 221);
 	  color: rgb(255, 255, 255);
-       margin:50px 20px; padding:20px;
+       margin:50px 20px; padding:10px;
        text-align:left;
 	}
 	h1{
     	text-align: center;
     }
-	h2{
-    	text-align: left;
-    }
-    p{
-      text-align: left;
+
+    div{
+      text-align: center;
     }
     form {
     display: inline-block;
@@ -23,9 +21,9 @@
       }
     label,input {
     display: block;
-    width: 150px;
+    width: 180px;
     float: left;
-     margin-bottom: 10px;
+     margin-bottom: 15px;
     }
 
   label {
@@ -49,14 +47,53 @@ br {
    <label for="name">Name</label>
    <input id="name" name="name"><br>
 
-   <label for="email">E-mail</label>
-   <input id="email" name="email"><br>
-
-   <label for="<Srole">Role</label>
+   <label for="<role">Role</label>
    <input id="role" name="role"><br>
+   <label for="date">Date</label>
+   <input id="date" name="date"><br>
+   <label for="id">Id</label>
+   <input id="id" name="id"><br>
    <input type="submit" name="submit" id="submit" value="submit" class="button"/>
    </form>
     </div>
+
+    <div>
+  <v-card class="mx-auto" max-width="400" tile>
+  
+    <v-list-item four-line v-for="(item, i) in items" :key="i">
+      <v-list-item-content>
+        <v-list-item-title v-text="item.name"></v-list-item-title><br>
+        <v-list-item-subtitle v-text="item.subscribedToChannel"></v-list-item-subtitle><br>
+        <v-list-item-subtitle v-text="item.subscribeDate"></v-list-item-subtitle><br>
+        <v-list-item-subtitle v-text="item._id"></v-list-item-subtitle><br>
+      </v-list-item-content><br>
+    </v-list-item>
+    "
+  </v-card>
+
+    </div>
+    
   </main>
    
 </template>
+<script>
+export default{
+
+  data(){
+    return{
+      items:[
+        
+      ]
+    }
+  },
+  async fetch(){
+    this.items=await fetch("http://0.0.0.0:3000/subscribers").then(res=>
+    res.json()
+    );
+  }
+}
+
+
+
+
+</script>
