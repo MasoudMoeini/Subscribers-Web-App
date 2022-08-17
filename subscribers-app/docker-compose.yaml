@@ -3,7 +3,7 @@ services:
   my-frontend-app:
     image: masodatc/my-front-end-app:01
     environment:
-    - NODEREST_CONNSTRING=my-backend-app
+    - PROXY_API=http://my-backend-app:3000/subscribers
     ports:
     - 3500:3500
   my-backend-app:
