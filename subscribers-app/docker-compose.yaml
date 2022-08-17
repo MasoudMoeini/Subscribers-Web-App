@@ -3,6 +3,7 @@ services:
   my-frontend-app:
     image: masodatc/my-front-end-app:01
     environment:
+    - NODEREST_CONNSTRING=my-backend-app
     ports:
     - 3500:3500
   my-backend-app:
