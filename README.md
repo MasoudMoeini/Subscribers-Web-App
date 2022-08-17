@@ -51,4 +51,11 @@ docker build -t masodatc/my-front-end-app:01 .
 ```
 docker run -it --rm -p 3500:3500 --name frontend masodatc/my-front-end-app:01 
 ```
-
+Running Application with Docker Compose
+```
+docker-compose up --detach  
+```
+Clean up resources
+```
+docker compose down 
+```
