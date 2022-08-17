@@ -124,13 +124,14 @@ export default {
                 }.bind(this));
         },
         updateForm(){
-            axios.put('http://0.0.0.0:3000/subscribers/{id}', this.form)
+            axios.patch(`http://0.0.0.0:3000/subscribers/${this.form.id}`, this.form)
+            
                 .then(response => { 
 	              console.log(response)
                 })
         },
         deleteRecord(){
-           axios.delete('http://0.0.0.0:3000/subscribers/{id}', this.form)
+           axios.delete(`http://0.0.0.0:3000/subscribers/${this.form.id}`, this.form)
                 .then(response => { 
 	              console.log(response)
               })
