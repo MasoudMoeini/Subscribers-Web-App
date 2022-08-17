@@ -1,13 +1,8 @@
 # Subscribers Web Application
 [Reference:NuxtJs get start](https://nuxtjs.org/docs/get-started/installation)<br>
 Before developing front-end make sure [backend-rest-api](https://github.com/MasoudMoeini/Jenkins-Deploy-App-to-kubernetes/tree/node-rest-api) is running.
-```
-yarn create nuxt-app subscribers-app
-cd subscribers-app
-npm run build
-npm run start
-```
-Manual installation
+
+Steps of Manual installation and development of frontend with Nuxt JS <br>
 ```
 mkdir subscribers-app
 ```
@@ -30,9 +25,9 @@ Copy this configuration into package.json
   }
 }
 ```
-Install Nuxt 
+
 ```
-npm install nuxt
+npm install 
 ```
 ``` 
 mkdir pages
