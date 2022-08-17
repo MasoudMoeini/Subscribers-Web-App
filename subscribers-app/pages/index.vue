@@ -1,6 +1,6 @@
 <style>
 	body {
-	  background-color: rgb(18, 177, 239);
+	  background-color: rgb(13, 162, 221);
 	  color: rgb(255, 255, 255);
        margin:50px 20px; padding:10px;
        text-align:left;
@@ -12,14 +12,10 @@
     div{
       text-align: center;
     }
-    form {
-    display: inline-block;
-     margin-left: auto;
-    margin-right: auto;
-    text-align: left;
+   
     
-      }
-    label,input {
+     
+    label,input,button {
     display: block;
     width: 180px;
     float: left;
@@ -31,6 +27,11 @@
   width: 75px;
   padding-right: 20px;
   }
+   form {
+    display: inline-block;
+     margin-left: auto;
+    margin-right: auto;
+    text-align: center; }
 
 br {
  clear: left;
@@ -45,61 +46,26 @@ table.center {
 th, td {
   padding: 5px;
 }
-	</style>
-
-    <template>
-    <main>
+</style>
+<template>
+ <main>
    <title>Subscribers Application</title>
    <h1>Hello From Frontend</h1>
-    <div>
-    <v-form>
-    <v-container>
-      <v-row>
-        <v-col
-          cols="12"
-          md="4">
-          <v-text-field
-            v-model="name"
-            :counter="10"
-            label="Name"
-            required
-          ></v-text-field>
-        </v-col>
-
-        <v-col
-          cols="12"
-          md="4" >
-          <v-text-field
-            v-model="subscribedToChannel"
-            :counter="14"
-            label="Subscription Channel"
-            required
-          ></v-text-field>
-        </v-col>
-
-        <v-col
-          cols="12"
-          md="4" >
-          <v-text-field
-            v-model="id"
-            label="Subscription Id"
-            required
-          ></v-text-field>
-        </v-col>
-        <v-col cols="12" md="4">
-          <v-btn
-          elevation="4"
-          color="succes"
-          class="mr-4"
-          @click="submitForm"
-          value="Submit"
-             ></v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-form>
+    <div class="form">
+        <form>
+        <label>Name</label>
+        <input type="text" v-model="form.name"/><br>
+        <label>Role</label>
+        <input type="text" v-model="form.subscribedToChannel"/><br>
+        <label>Id</label>
+        <input type="text" v-model="form.id"/><br>
+        <button v-on:click="submitForm()">Submit</button>
+        <button v-on:click="updateForm()">Update</button><br>
+        <input type="reset" value="Reset" >
+        <button v-on:click="deleteRecord()">Delete</button><br>
+        </form>
     </div>
-
+    
     <div>
       <v-simple-table  height="350px">
       <thead>
@@ -130,34 +96,45 @@ th, td {
       </tbody>
   </v-simple-table>
     </div>
-    
-  </main>
-   
+   </main>
 </template>
+
 <script>
 import axios from 'axios'
-export default{
-  data(){
-    return{
-      name: '',
-      subscribedToChannel: '',
-      id: '',
-      items:[]
-    }
-  },
-  async fetch(){
+export default {
+    data(){
+        return {
+          items:[],
+            form: {
+                name: '',
+                subscribedToChannel: '',
+                id: '',
+                }
+        }
+    },
+    async fetch(){
     this.items=await fetch("http://0.0.0.0:3000/subscribers").then(res=>
-    res.json()
-    );
+    res.json());
     },
-  methods: {
-     submitForm(e){
-      e.preventDefault()
-      console.log(this.name)
-    },
-  
-
-  }
-};
-
+    methods: {
+        submitForm(){
+            axios.post('http://0.0.0.0:3000/subscribers', this.form)
+                .then(function( response ){
+                    // Handle success
+                }.bind(this));
+        },
+        updateForm(){
+            axios.put('http://0.0.0.0:3000/subscribers/{id}', this.form)
+                .then(response => { 
+	              console.log(response)
+                })
+        },
+        deleteRecord(){
+           axios.delete('http://0.0.0.0:3000/subscribers/{id}', this.form)
+                .then(response => { 
+	              console.log(response)
+              })
+        },
+    }
+}
 </script>
