@@ -47,6 +47,9 @@ CTRL+C
 docker build -t masodatc/my-front-end-app:01 .
 ```
 ```
+docker push masodatc/my-front-end-app:01
+```
+```
 docker run -it --rm -p 3500:3500 --name frontend masodatc/my-front-end-app:01 
 ```
 Running Application with Docker Compose

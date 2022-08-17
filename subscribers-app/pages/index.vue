@@ -124,14 +124,14 @@ export default {
                 }.bind(this));
         },
         updateForm(){
-            axios.patch(process.env.PROXY_API ||`http://0.0.0.0:3000/subscribers/${this.form.id}`, this.form)
+            axios.patch(process.env.PROXY_API `/${this.form.id}` ||`http://0.0.0.0:3000/subscribers/${this.form.id}`, this.form)
             
                 .then(response => { 
 	              console.log(response)
                 })
         },
         deleteRecord(){
-           axios.delete(process.env.PROXY_API ||`http://0.0.0.0:3000/subscribers/${this.form.id}`, this.form)
+           axios.delete(process.env.PROXY_API `/${this.form.id}`||`http://0.0.0.0:3000/subscribers/${this.form.id}`, this.form)
                 .then(response => { 
 	              console.log(response)
               })

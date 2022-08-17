@@ -22,3 +22,8 @@ postNow() {
         })
    })
   },
+
+  PROXY_API='http://myapplication:3000/subscribers'
+  docker run -it --rm -p 3500:3500 -e PROXY_API='http://0.0.0.0:3000/subscribers' --name frontend masodatc/my-front-end-app:01
+  docker run -it --rm -p 3500:3500 -e PROXY_API=http://subscribers-web-app_myapplication_1:3000/subscribers --name frontend masodatc/my-front-end-app:01  
+
