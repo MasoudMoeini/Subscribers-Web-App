@@ -3,7 +3,7 @@ services:
   my-frontend-app:
     image: masodatc/my-front-end-app:01
     environment:
-     - PROXY_API=http://my-backend-app:3000/subscribers
+     - BROWSER_BASE_URL=http://my-backend-app:3000
     ports:
     - 3500:3500
   my-backend-app:
