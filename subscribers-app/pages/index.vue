@@ -1,6 +1,6 @@
 <style>
 	body {
-	  background-color: #23baf6;
+	  background-color: #09b0f3;
 	  color: rgb(255, 255, 255);
        margin:50px 20px; padding:10px;
        text-align:left;
@@ -30,7 +30,7 @@
  button{
   background-color: rgb(25, 237, 194);
   display: inline-block;
-  color:rgb(45, 47, 47);
+  color: white;
   text-align: center;
   text-decoration: none;
   width: 200px;
@@ -123,7 +123,7 @@ th, td {
 </template>
 
 <script>
-import axios from 'axios'
+
 export default {
     data(){
         return {
@@ -136,25 +136,24 @@ export default {
         }
     },
     async fetch(){
-    this.items=await fetch(process.env.PROXY_API ||'http://0.0.0.0:3000/subscribers').then(res=>
-    res.json());
+    this.items=await this.$axios.$get('/subscribers').then(res=>
+    res);
     },
     methods: {
         submitForm(){
-            axios.post(process.env.PROXY_API ||'http://0.0.0.0:3000/subscribers', this.form)
+            this.$axios.$post('/subscribers', this.form)
                 .then(function( response ){
                      // Handle success
                 }.bind(this));
         },
         updateForm(){
-            axios.patch(process.env.PROXY_API||`http://0.0.0.0:3000/subscribers/${this.form.id}`, this.form)
-            
+            this.$axios.$patch(`/subscribers/${this.form.id}`, this.form)
                 .then(response => { 
 	              console.log(response)
                 })
         },
         deleteRecord(){
-           axios.delete(process.env.PROXY_API||`http://0.0.0.0:3000/subscribers/${this.form.id}`, this.form)
+           this.$axios.$delete(`/subscribers/${this.form.id}`, this.form)
                 .then(response => { 
 	              console.log(response)
               })
