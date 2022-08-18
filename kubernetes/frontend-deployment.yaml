@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-rest-node-app
+  labels:
+    app: restnodejs-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: restnodejs-front
+  template:
+    metadata:
+      labels:
+        app: restnodejs-front
+    spec:
+      containers:
+      - name: restnodejs-front
+        image: masodatc/my-front-end-app:01
+        env:
+        - name: PROXY_API
+          value: http://rest-node-app-svc:3000/subscribers
+        ports:
+        - containerPort: 3500
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-rest-node-app-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: restnodejs-front
+  ports:
+    - port: 3500 #this is the external port
+      targetPort: 3500 #this port must be the same with container port
+

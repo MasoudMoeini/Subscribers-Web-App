@@ -1,0 +1,9 @@
+secretGenerator:
+- name: mongodb-pass
+  literals:
+  - username=node-app-user
+  - password=mypass2
+resources:
+  - rest-node-app-deployment.yaml
+  - mongodb-deployment.yaml
+  - frontend-deployment.yaml
