@@ -1,12 +1,15 @@
 <style>
 	body {
-	  background-color: rgb(13, 162, 221);
+	  background-color: #23baf6;
 	  color: rgb(255, 255, 255);
        margin:50px 20px; padding:10px;
        text-align:left;
 	}
 	h1{
     	text-align: center;
+      font-size: 42px;
+      margin:40px 10px; 
+      padding:5px;
     }
 
     div{
@@ -17,15 +20,35 @@
      
     label,input,button {
     display: block;
-    width: 180px;
     float: left;
      margin-bottom: 15px;
     }
+ input { background-color: rgb(255, 255, 255);
+  width: 250px;
+  font-size: 16px;
+  } 
+ button{
+  background-color: rgb(25, 237, 194);
+  display: inline-block;
+  color:rgb(45, 47, 47);
+  text-align: center;
+  text-decoration: none;
+  width: 200px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight : bold ;
+  margin: 8px 4px;
+  cursor: pointer;
+         }
 
+button:hover{background-color:rgba(25, 237, 195, 0.938);}
+
+button:focus{background-color:rgba(17, 220, 179, 0.647);}
   label {
   text-align: right;
   width: 75px;
   padding-right: 20px;
+  font-size: 16px;
   }
    form {
     display: inline-block;
@@ -50,7 +73,7 @@ th, td {
 <template>
  <main>
    <title>Subscribers Application</title>
-   <h1>Hello From Frontend</h1>
+  <h1>Hello From Frontend</h1>
     <div class="form">
         <form>
         <label>Name</label>
@@ -61,7 +84,7 @@ th, td {
         <input type="text" v-model="form.id"/><br>
         <button v-on:click="submitForm()">Submit</button>
         <button v-on:click="updateForm()">Update</button><br>
-        <input type="reset" value="Reset" >
+         <button v-on:click="">Reset</button>
         <button v-on:click="deleteRecord()">Delete</button><br>
         </form>
     </div>
@@ -124,14 +147,14 @@ export default {
                 }.bind(this));
         },
         updateForm(){
-            axios.patch(process.env.PROXY_API`${this.form.id}` ||`http://0.0.0.0:3000/subscribers/${this.form.id}`, this.form)
+            axios.patch(process.env.PROXY_API||`http://0.0.0.0:3000/subscribers/${this.form.id}`, this.form)
             
                 .then(response => { 
 	              console.log(response)
                 })
         },
         deleteRecord(){
-           axios.delete(process.env.PROXY_API`/${this.form.id}`||`http://0.0.0.0:3000/subscribers/${this.form.id}`, this.form)
+           axios.delete(process.env.PROXY_API||`http://0.0.0.0:3000/subscribers/${this.form.id}`, this.form)
                 .then(response => { 
 	              console.log(response)
               })
