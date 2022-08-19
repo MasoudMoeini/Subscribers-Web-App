@@ -18,7 +18,7 @@ spec:
       - name: restnodejs-front
         image: masodatc/my-front-end-app:01
         env:
-        - name: BROWSER_BASE_URL
+        - name: API_URL
           value: http://rest-node-app-svc:3000
         ports:
         - containerPort: 3500

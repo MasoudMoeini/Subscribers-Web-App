@@ -17,6 +17,6 @@ EXPOSE 3500
 ENV NUXT_HOST=0.0.0.0
 # set app port
 ENV NUXT_PORT=3500
-ENV BROWSER_BASE_URL=$BROWSER_BASE_URL
+ENV API_URL=$API_URL
 # start the app
 CMD [ "npm", "run","start" ]

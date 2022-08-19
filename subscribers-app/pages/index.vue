@@ -28,20 +28,20 @@
   font-size: 16px;
   } 
  button{
-  background-color: rgb(25, 237, 194);
+  background-color: rgb(255, 255, 255);
   display: inline-block;
-  color: white;
+  color: rgb(8, 163, 253);
   text-align: center;
   text-decoration: none;
   width: 200px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight : bold ;
   margin: 8px 4px;
   cursor: pointer;
          }
 
-button:hover{background-color:rgba(25, 237, 195, 0.938);}
+button:hover{background-color:rgba(157, 255, 130, 0.82);}
 
 button:focus{background-color:rgba(17, 220, 179, 0.647);}
   label {
