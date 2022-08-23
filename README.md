@@ -1,6 +1,6 @@
 # Subscribers Web Application
 [Reference:NuxtJs get start](https://nuxtjs.org/docs/get-started/installation)<br>
-Before developing front-end make sure [backend-rest-api](https://github.com/MasoudMoeini/Jenkins-Deploy-App-to-kubernetes/tree/node-rest-api) is running.
+Before developing front-end make sure [backend-rest-api](https://github.com/MasoudMoeini/Terraform-GKE-Rest-API-NodeJs-Mongodb) is running.
 
 Steps of Manual installation and development of frontend with Nuxt JS <br>
 ```

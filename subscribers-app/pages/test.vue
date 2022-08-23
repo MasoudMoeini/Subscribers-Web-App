@@ -86,10 +86,10 @@ th, td {
             required
           ></v-text-field>
         </v-col>
+        <button v-on:click="submitForm()">Submit</button>
         <v-col cols="12" md="4">
           <v-btn
           elevation="4"
-          color="succes"
           class="mr-4"
           @click="submitForm"
           value="Submit"
@@ -145,19 +145,30 @@ export default{
       items:[]
     }
   },
-  async fetch(){
-    this.items=await fetch("http://0.0.0.0:3000/subscribers").then(res=>
-    res.json()
-    );
+   async fetch(){
+    this.items=await this.$axios.$get('/subscribers').then(res=>
+    res);
     },
-  methods: {
-     submitForm(e){
-      e.preventDefault()
-      console.log(this.name)
-    },
-  
-
-  }
+    methods: {
+        submitForm(){
+            this.$axios.$post('/subscribers', this.form)
+                .then(function( response ){
+                     // Handle success
+                }.bind(this));
+        },
+        updateForm(){
+            this.$axios.$patch(`/subscribers/${this.form.id}`, this.form)
+                .then(response => { 
+	              console.log(response)
+                })
+        },
+        deleteRecord(){
+           this.$axios.$delete(`/subscribers/${this.form.id}`, this.form)
+                .then(response => { 
+	              console.log(response)
+              })
+        },
+    }
 };
 
 </script>
