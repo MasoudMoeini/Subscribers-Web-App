@@ -1,3 +1,4 @@
+
 <style>
 	body {
 	  background-color: #09b0f3;
@@ -86,13 +87,13 @@ th, td {
         </form> 
     </div>
 <p>
-<button  v-on:click="searchRecord()">Search</button>
+<button  v-on:click="getAllRecord()">Table</button> 
 <button v-on:click="submitForm()">Submit</button>
 <button v-on:click="updateForm()">Update</button>
-<button v-on:click="deleteRecord()">Delete</button>
-<button v-on:click="reloadPage()">Reset</button><br>
+<button v-on:click="deleteRecord()">Delete</button><br>
+<!-- <button v-on:click="reloadPage()">Reset</button><br> -->
 </p>
-  <div>
+ <!--  <div>
       <v-simple-table  class="mx-auto">
       <thead>
         <tr>
@@ -121,7 +122,7 @@ th, td {
         </tr>
       </tbody>
   </v-simple-table>
-    </div><br>
+    </div><br> -->
     <div>
       <v-card>
     <v-card-title>
@@ -204,31 +205,34 @@ export default {
                 }
         }
     },
-    async fetch(){
+    /* async fetch(){
     this.items=await this.$axios.$get('/subscribers').then(res=>
     res);
-    },
+    }, */
     methods: {
         submitForm(){
             this.$axios.$post('/subscribers', this.form)
                 .then(function( response ){
                      // Handle success
                 }.bind(this));
-                this.reloadPage();
+                this.getAllRecord()
+                
         },
         updateForm(){
             this.$axios.$patch(`/subscribers/${this.form.id}`, this.form)
                 .then(response => { 
 	              console.log(response)
-                })
-                this.reloadPage();
+                }),
+                
+                this.getAllRecord()
         },
         deleteRecord(){
            this.$axios.$delete(`/subscribers/${this.form.id}`, this.form)
                 .then(response => { 
 	              console.log(response)
-              })
-              this.reloadPage();
+              }),
+              
+              this.getAllRecord()
         },
         async searchRecord(){
         const result= await this.$axios.$get(`/subscribers/${this.form.id}`, this.form);
@@ -237,10 +241,11 @@ export default {
             
        },
        async getAllRecord(){
-        const result= await this.$axios.$get(`/subscribers/${this.form.id}`, this.form);
+        const result= await this.$axios.$get('/subscribers');
             this.items = result;
-            this.reloadPage();
-            
+            this.form.id='',
+            this.form.name='',
+            this.form.subscribedToChannel=''
        },
       reloadPage(){
          window.location.reload()
