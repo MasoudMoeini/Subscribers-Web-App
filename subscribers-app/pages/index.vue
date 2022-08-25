@@ -76,6 +76,55 @@ th, td {
  <main>
    <title>Subscribers Application</title>
   <h1>Hello From Frontend</h1>
+  <div>
+  <v-form
+    ref="form"
+    v-model="valid"
+    lazy-validation
+   >
+    <v-text-field
+      v-model="form.name"
+      :counter="10"
+      :rules="nameRules"
+      label="Name"
+      required
+    ></v-text-field>
+
+    <v-text-field
+      v-model="form.subscribedToChannel"
+      :rules="nameRules"
+      label="Role"
+      required
+    ></v-text-field>
+
+     <v-text-field
+      v-model="form.id"
+      label="Id"
+      required
+    ></v-text-field>
+
+   <!--  <v-select
+      v-model="select"
+      :items="items"
+      :rules="[v => !!v || 'Item is required']"
+      label="Item"
+      required
+    ></v-select> -->
+
+    <v-checkbox
+      v-model="checkbox"
+      :rules="[v => !!v || 'You must agree to continue!']"
+      label="Do you agree?"
+      required
+    ></v-checkbox>
+    <v-btn :disabled="!valid" @click="validate">Validate</v-btn>
+    <v-btn class="mr-4" @click="reset">Reset Form</v-btn>
+    <v-btn @click="resetValidation">Reset Validation </v-btn><br>
+    <v-btn @click="submitForm">Submit</v-btn>
+    <v-btn @click="updateForm">Update</v-btn>
+    <v-btn @click="deleteRecord">Delete</v-btn>
+  </v-form>
+  </div>
     <div class="form">
         <form>
         <label>Name</label>
@@ -187,6 +236,17 @@ export default {
           items:[],
           searchItem:[],
           search: '',
+          valid: true,
+          nameRules: [
+              v => !!v || 'Name is required',
+              v => (v && v.length <= 50) || 'Name must be less than 10 characters',
+          ],
+          roleRules: [
+              v => !!v || 'Role is required',
+              v => (v && v.length <= 50) || 'Role must be less than 10 characters',
+          ],
+          select: null,
+          checkbox: false,
           headers:[
           {
             text: 'Name',
@@ -211,8 +271,17 @@ export default {
   
     }, 
     methods: {
+      validate () {
+        this.$refs.form.validate()
+      },
+      reset () {
+        this.$refs.form.reset()
+      },
+      resetValidation () {
+        this.$refs.form.resetValidation()
+      },
         submitForm(){
-            this.$axios.$post('/subscribers', this.form)
+            this.$axios.$post('/subscribers',this.form)
                 .then(function( response ){
                      // Handle success
                 }.bind(this));
