@@ -138,7 +138,7 @@ th, td {
       :headers="headers"
       :items="items"
       :search="search"
-      :items-per-page="5"
+      :items-per-page="10"
       class="elevation-1"
     ></v-data-table>
   </v-card>
@@ -205,10 +205,11 @@ export default {
                 }
         }
     },
-    /* async fetch(){
+    async fetch(){
     this.items=await this.$axios.$get('/subscribers').then(res=>
     res);
-    }, */
+  
+    }, 
     methods: {
         submitForm(){
             this.$axios.$post('/subscribers', this.form)
@@ -216,7 +217,7 @@ export default {
                      // Handle success
                 }.bind(this));
                 this.getAllRecord()
-                
+                this.$fetch()
         },
         updateForm(){
             this.$axios.$patch(`/subscribers/${this.form.id}`, this.form)
