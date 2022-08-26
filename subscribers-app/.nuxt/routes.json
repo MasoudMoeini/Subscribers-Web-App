@@ -3,21 +3,18 @@
     "name": "fun",
     "path": "/fun",
     "component": "/Users/masoudmoeini/Desktop/Subscribers-Web-App/subscribers-app/pages/fun.vue",
-    "chunkName": "pages/fun",
-    "_name": "_0e2d6d1e"
+    "chunkName": "pages/fun"
   },
   {
     "name": "test",
     "path": "/test",
     "component": "/Users/masoudmoeini/Desktop/Subscribers-Web-App/subscribers-app/pages/test.vue",
-    "chunkName": "pages/test",
-    "_name": "_df22cee0"
+    "chunkName": "pages/test"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/masoudmoeini/Desktop/Subscribers-Web-App/subscribers-app/pages/index.vue",
-    "chunkName": "pages/index",
-    "_name": "_d38b9678"
+    "chunkName": "pages/index"
   }
 ]

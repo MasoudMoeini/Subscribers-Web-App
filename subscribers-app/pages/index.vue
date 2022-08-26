@@ -71,6 +71,7 @@ table.center {
 th, td {
   padding: 5px;
 }
+
 </style>
 <template>
  <main>
@@ -84,19 +85,16 @@ th, td {
    >
     <v-text-field
       v-model="form.name"
-      :counter="10"
       :rules="nameRules"
       label="Name"
       required
     ></v-text-field>
-
-    <v-text-field
+       <v-text-field
       v-model="form.subscribedToChannel"
-      :rules="nameRules"
+      :rules="roleRules"
       label="Role"
       required
     ></v-text-field>
-
      <v-text-field
       v-model="form.id"
       label="Id"
@@ -112,8 +110,7 @@ th, td {
     ></v-select> -->
 
     <v-checkbox
-      v-model="checkbox"
-      :rules="[v => !!v || 'You must agree to continue!']"
+      v-model="checkbox" :rules="[v => !!v || 'You must agree to continue!']"
       label="Do you agree?"
       required
     ></v-checkbox>
@@ -125,6 +122,7 @@ th, td {
     <v-btn @click="deleteRecord">Delete</v-btn>
   </v-form>
   </div>
+  <!-- 
     <div class="form">
         <form>
         <label>Name</label>
@@ -140,8 +138,8 @@ th, td {
 <button v-on:click="submitForm()">Submit</button>
 <button v-on:click="updateForm()">Update</button>
 <button v-on:click="deleteRecord()">Delete</button><br>
-<!-- <button v-on:click="reloadPage()">Reset</button><br> -->
-</p>
+<button v-on:click="reloadPage()">Reset</button><br> 
+</p> -->
  <!--  <div>
       <v-simple-table  class="mx-auto">
       <thead>
@@ -239,13 +237,13 @@ export default {
           valid: true,
           nameRules: [
               v => !!v || 'Name is required',
-              v => (v && v.length <= 50) || 'Name must be less than 10 characters',
+              v => (v && v.length>=3 && v.length <= 50) || 'Name must be more than 3 character and less than 50 characters',
           ],
           roleRules: [
               v => !!v || 'Role is required',
-              v => (v && v.length <= 50) || 'Role must be less than 10 characters',
+              v => (v && v.length>=5 && v.length <= 100) || 'Role must be more than 5 character and less than 100 characters',
           ],
-          select: null,
+          select:'',
           checkbox: false,
           headers:[
           {
@@ -276,33 +274,36 @@ export default {
       },
       reset () {
         this.$refs.form.reset()
+        this.$fetch()
       },
       resetValidation () {
         this.$refs.form.resetValidation()
       },
         submitForm(){
+          if (this.valid!=false){
             this.$axios.$post('/subscribers',this.form)
                 .then(function( response ){
                      // Handle success
                 }.bind(this));
-                this.getAllRecord()
                 this.$fetch()
+          }
         },
         updateForm(){
+          if (this.valid!=false){
             this.$axios.$patch(`/subscribers/${this.form.id}`, this.form)
                 .then(response => { 
 	              console.log(response)
                 }),
+                this.$fetch()
+          }
                 
-                this.getAllRecord()
         },
         deleteRecord(){
            this.$axios.$delete(`/subscribers/${this.form.id}`, this.form)
                 .then(response => { 
 	              console.log(response)
               }),
-              
-              this.getAllRecord()
+              this.$fetch()
         },
         async searchRecord(){
         const result= await this.$axios.$get(`/subscribers/${this.form.id}`, this.form);

@@ -2,36 +2,16 @@
 [Reference:NuxtJs get start](https://nuxtjs.org/docs/get-started/installation)<br>
 Before developing front-end make sure [backend-rest-api](https://github.com/MasoudMoeini/Terraform-GKE-Rest-API-NodeJs-Mongodb) is running.
 
-Steps of Manual installation and development of frontend with Nuxt JS <br>
+Steps of Manual installation and development of frontend with Nuxt JS [Click Here]()<br>
+Clone Repository 
 ```
-mkdir subscribers-app
+cd Subscribers-Web-App/subscribers-app
 ```
-```
-cd subscribers-app
-```
-Create the package.json file
-```
-touch package.json
-```
-Copy this configuration into package.json
-```
-{
-  "name": "subscribers-app",
-  "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "generate": "nuxt generate",
-    "start": "nuxt start"
-  }
-}
-```
-
 ```
 npm install 
 ```
-``` 
-mkdir pages
-touch pages/index.vue
+```
+npm run build
 ```
 To run Application
 ```
@@ -54,6 +34,9 @@ To test image locally
 docker run -it --rm -p 3500:3500 --name frontend masodatc/my-front-end-app:01 
 ```
 Running Application with Docker Compose
+``` 
+cd ..
+```
 ```
 docker-compose up --detach  
 ```
