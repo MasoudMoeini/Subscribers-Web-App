@@ -51,6 +51,7 @@ kubectl apply -k ./kubernetes/
 ```
 kubectl get svc 
 ```
+The application running on browser http://localhost:3500 <br>
 ```
 kubectl get pvc 
 ```
