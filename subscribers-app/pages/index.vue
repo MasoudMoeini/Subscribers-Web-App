@@ -187,6 +187,7 @@ th, td {
       :search="search"
       :items-per-page="10"
       class="elevation-1"
+      @click:row="handleClick"
     ></v-data-table>
   </v-card>
 
@@ -237,11 +238,13 @@ export default {
           valid: true,
           nameRules: [
               v => !!v || 'Name is required',
-              v => (v && v.length>=3 && v.length <= 50) || 'Name must be more than 3 character and less than 50 characters',
+              v => (v && v.length>=3) || 'Name must be more than 3 character',
+              v => (v && v.length <= 50) || 'Name must be less than 50 characters',
           ],
           roleRules: [
               v => !!v || 'Role is required',
-              v => (v && v.length>=5 && v.length <= 100) || 'Role must be more than 5 character and less than 100 characters',
+              v => (v && v.length>=5) || 'Role must be more than 5 character',
+              v => (v && v.length <= 100) || 'Name must be less than 100 characters',
           ],
           select:'',
           checkbox: false,
@@ -263,10 +266,9 @@ export default {
                 }
         }
     },
-    async fetch(){
+     async fetch(){
     this.items=await this.$axios.$get('/subscribers').then(res=>
     res);
-  
     }, 
     methods: {
       validate () {
@@ -317,6 +319,14 @@ export default {
             this.form.id='',
             this.form.name='',
             this.form.subscribedToChannel=''
+       },
+      handleClick(row) {
+      this.items.map((item, index) => {
+      item.selected = item === row
+      this.$set(this.items, index, item) })
+      this.form.id=row._id,
+      this.form.name=row.name,
+      this.form.subscribedToChannel=row.subscribedToChannel
        },
       reloadPage(){
          window.location.reload()
